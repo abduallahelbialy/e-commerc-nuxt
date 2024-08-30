@@ -202,6 +202,7 @@ a {
   }
   .search-box {
     margin: 10px 0;
+    width: 230px;
   }
   .img-fluid {
     max-width: 70%;
