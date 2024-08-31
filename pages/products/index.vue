@@ -410,7 +410,7 @@ a {
   }
   .Flash h1 {
     font-size: 20px;
-    width: 33px;
-  }
+    width: 15px !important;
+}
 }
 </style>

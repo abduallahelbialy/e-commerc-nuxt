@@ -202,10 +202,7 @@ a {
   .line {
     font-size: 17px !important;
   }
-  .search-box {
-    margin: 10px 0;
-    width: 233px !important;
-  }
+  
   p,span,a{
     font-size: 14px;
   }
