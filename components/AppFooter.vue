@@ -1,21 +1,20 @@
 <template>
   <footer ref="footer">
-     <div class="up position-relative">
-          <img
-            v-show="showUpArrow"
-            @click="scrollToTop"
-            :style="{ 
-        display: showUpArrow ? 'block' : 'none', 
-        cursor: 'pointer' 
-      }"
-            src="../assets/imgs/Fill with Up Arrow.png"
-            alt="upscroll"
-            class="position-absolute up-img img-fluid p-2"
-          />
-        </div>
+    <div class="up position-relative">
+      <img
+        v-show="showUpArrow"
+        @click="scrollToTop"
+        :style="{
+          display: showUpArrow ? 'block' : 'none',
+          cursor: 'pointer',
+        }"
+        src="../assets/imgs/Fill with Up Arrow.png"
+        alt="upscroll"
+        class="position-absolute up-img img-fluid p-2"
+      />
+    </div>
     <div class="container">
       <div class="row">
-       
         <div class="d-flex justify-content-between flex-wrap pt-4 mb-2">
           <div class="sub text-white">
             <h1 class="fs-3 line">Exclusive</h1>
@@ -30,7 +29,7 @@
                 placeholder="Enter your email"
               />
               <button class="search-button">
-                <img src="../assets/imgs/icon-send.png" alt="" />
+                <img src="../assets/imgs/icon-send.png" alt="" class=" img-fluid" />
               </button>
             </div>
           </div>
@@ -98,9 +97,11 @@
             </div>
           </div>
         </div>
-        <div class="capy mt-2 d-flex gap-1 justify-content-center text-white-50 align-items-center">
+        <div
+          class="capy mt-2 d-flex gap-1 justify-content-center text-white-50 align-items-center"
+        >
           <p>@</p>
-<p>Copyright Rimel 2024. All right reserved</p>
+          <p>Copyright Rimel 2024. All right reserved</p>
         </div>
       </div>
     </div>
@@ -161,7 +162,7 @@ footer {
   border-radius: 6px;
   background-color: transparent;
 }
-.search-input::placeholder{
+.search-input::placeholder {
   font-size: 13px;
 }
 .search-button {
@@ -202,8 +203,10 @@ a {
   .line {
     font-size: 17px !important;
   }
-  
-  p,span,a{
+
+  p,
+  span,
+  a {
     font-size: 14px;
   }
   .img-fluid {
