@@ -80,7 +80,7 @@ export default {
   data() {
     return {
       autoplay: {
-        delay: 24400,
+        delay: 2400,
         disableOnInteraction: false,
       },
       sliders: [
