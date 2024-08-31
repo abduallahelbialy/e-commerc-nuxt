@@ -67,3 +67,15 @@ body{
     -ms-border-radius: 4px;
     -o-border-radius: 4px;
 }
+.btn3 button{
+    background-color: #fff !important;
+    padding: 10px 30px;
+    outline: none;
+    color: black;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}

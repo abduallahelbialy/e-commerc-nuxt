@@ -16,24 +16,24 @@
             <div
               class="time d-flex justify-content-between align-items-center gap-4 flex-wrap"
             >
-              <div class="d-flex flex-column align-items-center flex-wrap">
+              <div class="d-flex flex-column align-items-center ">
                 <span class="text-black fw-medium">Days</span>
-                <span class="fs-2 fw-medium">{{ days }}</span>
+                <span class="fs-3 fw-medium">{{ days }}</span>
               </div>
-              <div class="fs-2 text-danger dot">:</div>
+              <div class="fs-3 text-danger dot">:</div>
               <div class="d-flex flex-column align-items-center">
                 <span class="text-black fw-medium">Hours</span>
-                <span class="fs-2 fw-medium">{{ hours }}</span>
+                <span class="fs-3 fw-medium">{{ hours }}</span>
               </div>
-              <div class="fs-2 text-danger dot">:</div>
+              <div class="fs-3 text-danger dot">:</div>
               <div class="d-flex flex-column align-items-center">
                 <span class="text-black fw-medium">Minutes</span>
-                <span class="fs-2 fw-medium">{{ minutes }}</span>
+                <span class="fs-3 fw-medium">{{ minutes }}</span>
               </div>
-              <div class="fs-2 text-danger dot">:</div>
+              <div class="fs-3 text-danger dot">:</div>
               <div class="d-flex flex-column align-items-center">
                 <span class="text-black fw-medium">Seconds</span>
-                <span class="fs-2 fw-medium">{{ seconds }}</span>
+                <span class="fs-3 fw-medium">{{ seconds }}</span>
               </div>
             </div>
           </div>
@@ -165,6 +165,7 @@ export default {
           newPrice: 120,
           oldPrice: 160,
           stars: "★★★★★",
+          quantity: 1,
           reviews: 88,
           icon: " pi pi-cart-arrow-down",
         },
@@ -175,6 +176,8 @@ export default {
           image: img2,
           discount: 20,
           newPrice: 80,
+                    quantity: 1,
+
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -187,6 +190,8 @@ export default {
           discount: 20,
           newPrice: 80,
           oldPrice: 100,
+                    quantity: 1,
+
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
           reviews: 45,
@@ -198,6 +203,8 @@ export default {
           discount: 20,
           newPrice: 80,
           oldPrice: 100,
+                    quantity: 1,
+
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
           reviews: 45,
@@ -208,6 +215,8 @@ export default {
           image: img3,
           discount: 20,
           newPrice: 80,
+                    quantity: 1,
+
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -282,8 +291,9 @@ a {
   text-decoration: none;
 }
 .product-card {
-  width: 320px;
+  max-width: 320px;
   /* border: 1px solid #e0e0e0; */
+  width: 100%;
   border-radius: 8px;
   overflow: hidden;
   background-color: #e0e0e0;
@@ -306,10 +316,11 @@ a {
 }
 
 .product-image {
-  width: 80%;
-  height: 230px;
-  padding: 15px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-width: 250px;
+  padding: 10px;
+  margin:  auto;
 }
 
 .action-icons {

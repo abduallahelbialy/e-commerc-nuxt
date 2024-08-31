@@ -4,19 +4,19 @@
       <div class="row">
         <div class="title-logo d-flex gap-2 align-items-center mb-3">
           <img src="../assets/imgs/Rectangle 17.png" alt="" />
-          <span class="text-danger fw-medium">This Month</span>
+          <span class="text-danger fw-medium">{{ title }}</span>
         </div>
         <div
           class="d-flex justify-content-between align-items-center mb-3 flex-wrap"
         >
           <div class="d-flex gap-5 align-items-center">
             <div class="Flash">
-              <h1>Best Selling Products</h1>
+              <h1>{{ best }}</h1>
             </div>
           </div>
           <div class="arror d-flex gap-2">
             <div class="btn">
-              <button>View All</button>
+              <button>{{ see }}</button>
             </div>
           </div>
         </div>
@@ -33,6 +33,7 @@
                 class="product-image"
               />
               <div class="action-icons">
+                <div v-if="$route.path !=='/Favorite'">
                 <i
                   :class="{
                     'pi pi-heart': true,
@@ -40,6 +41,7 @@
                   }"
                   @click="toggleFavorite(product)"
                 ></i>
+                </div>
                 <nuxt-link :to="`/products/${product.id}`">
                   <i class="pi pi-eye"></i>
                 </nuxt-link>
@@ -67,7 +69,10 @@
             </div>
           </div>
         </div>
+        <div v-if="$route.path !== '/Favorite'">
+
         <Banner />
+        </div>
       </div>
     </div>
   </div>
@@ -82,8 +87,24 @@ import img3 from "../assets/imgs/Frame 610.png";
 import img4 from "../assets/imgs/Frame 612.png";
 import Banner from "../pages/Banner.vue";
 export default {
+   props: {
+    title: {
+      type: String,
+      default: 'This Month',
+    },
+    see:{
+      type: String,
+      default:'View All'
+    },
+    best:{
+      type: String,
+      default: ' Best Selling Products'
+    }
+  },
   data() {
     return {
+            defaultTitle: 'Best Selling Products',
+
       selling: [
         {
           id: 15,
@@ -93,6 +114,8 @@ export default {
           newPrice: 120,
           oldPrice: 160,
           stars: "★★★★★",
+                    quantity: 1,
+
           icon: " pi pi-cart-arrow-down",
           reviews: 88,
         },
@@ -104,6 +127,8 @@ export default {
           discount: 20,
           newPrice: 80,
           oldPrice: 100,
+                    quantity: 1,
+
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
           reviews: 45,
@@ -114,6 +139,8 @@ export default {
           image: img3,
           discount: 20,
           newPrice: 80,
+                    quantity: 1,
+
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -126,6 +153,8 @@ export default {
           discount: 20,
           newPrice: 80,
           oldPrice: 100,
+                    quantity: 1,
+
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
           reviews: 45,
@@ -164,7 +193,8 @@ a {
   background-color: red !important;
 }
 .product-card {
-  width: 320px;
+  max-width: 320px;
+  width: 100%;
   /* border: 1px solid #e0e0e0; */
   margin: 10px !important;
   border-radius: 8px;
@@ -189,10 +219,11 @@ a {
 }
 
 .product-image {
-  width: 70%;
-  height: 250px;
-  padding: 10px;
-  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  margin:  auto;
+  max-width: 250px;
 }
 
 .action-icons {
@@ -278,6 +309,10 @@ a {
   .all-card {
     flex-wrap: wrap;
   }
+  .product-card {
+    margin: auto !important;
+    
+}
 }
 @media (max-width: 799px) {
   .all-card {

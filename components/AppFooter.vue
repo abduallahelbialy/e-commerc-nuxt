@@ -145,7 +145,7 @@ footer {
 }
 .search-box {
   width: 100%;
-  max-width: 225px;
+  max-width: 230px;
   margin: 0 auto;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -161,7 +161,9 @@ footer {
   border-radius: 6px;
   background-color: transparent;
 }
-
+.search-input::placeholder{
+  font-size: 13px;
+}
 .search-button {
   background: transparent;
   border: none;
@@ -202,7 +204,10 @@ a {
   }
   .search-box {
     margin: 10px 0;
-    width: 230px;
+    width: 233px !important;
+  }
+  p,span,a{
+    font-size: 14px;
   }
   .img-fluid {
     max-width: 70%;

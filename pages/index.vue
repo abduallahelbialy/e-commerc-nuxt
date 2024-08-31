@@ -38,7 +38,7 @@
                   <div class="text text-white">
                     <div class="iphon d-flex gap-3 align-items-center">
                       <img :src="slider.imgApp" alt="" />
-                      <p>{{ slider.des }}</p>
+                      <p class="mt-2">{{ slider.des }}</p>
                     </div>
                     <div class="up">
                       <h1 v-html="slider.text"></h1>
@@ -80,7 +80,7 @@ export default {
   data() {
     return {
       autoplay: {
-        delay: 2400,
+        delay: 24400,
         disableOnInteraction: false,
       },
       sliders: [
@@ -164,13 +164,14 @@ export default {
   flex-wrap: wrap-reverse;
 }
 @media (max-width: 477px) {
-  .up h1 {
+ .up h1 {
     line-height: 1.5;
-    font-size: 10px;
-    margin-bottom: 10px;
-  }
+    font-size: 19px;
+    margin-bottom: -18px;
+}
   .imgphone {
     width: 70%;
+    padding: 7px;
   }
   .side-bar {
     border-right: 1px solid #ddd;

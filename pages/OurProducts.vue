@@ -99,9 +99,9 @@
           </swiper-slide>
         </swiper>
 
-
-     <!-- ///section other product/// -->
-      <swiper  :spaceBetween="20"
+        <!-- ///section other product/// -->
+        <swiper
+          :spaceBetween="20"
           :breakpoints="{
             0: {
               slidesPerView: 1,
@@ -116,10 +116,9 @@
               slidesPerView: 4,
             },
           }"
-         
-          class="mySwiper mt-5">
-
-      <swiper-slide v-for="(product, index) in productsTwo" :key="index">
+          class="mySwiper mt-5"
+        >
+          <swiper-slide v-for="(product, index) in productsTwo" :key="index">
             <div class="products-container">
               <div class="product-card m-auto">
                 <div class="product-image-container">
@@ -165,20 +164,19 @@
               </div>
             </div>
           </swiper-slide>
-      </swiper>
+        </swiper>
 
         <div class="btn mt-4 pt-2 mb-5">
           <button>View All Products</button>
         </div>
-       
       </div>
-      <Featured/>
+      <Featured />
     </div>
   </div>
 </template>
 
 <script>
-import Featured from "../pages/Featured.vue"
+import Featured from "../pages/Featured.vue";
 import { mapActions, mapGetters } from "vuex";
 import img1 from "../assets/imgs/Frame 604 (2).png";
 import img2 from "../assets/imgs/Frame 604 (1).png";
@@ -211,6 +209,7 @@ export default {
           image: img1,
           discount: 40,
           newPrice: 120,
+          quantity:1,
           oldPrice: 160,
           stars: "★★★★★",
           reviews: 88,
@@ -223,6 +222,7 @@ export default {
           image: img2,
           discount: 20,
           newPrice: 80,
+                    quantity:1,
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -234,6 +234,7 @@ export default {
           image: img3,
           discount: 20,
           newPrice: 80,
+                    quantity:1,
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -245,6 +246,8 @@ export default {
           image: img4,
           discount: 20,
           newPrice: 80,
+                    quantity:1,
+
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -257,6 +260,8 @@ export default {
           discount: 20,
           newPrice: 80,
           oldPrice: 100,
+                    quantity:1,
+
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
           reviews: 45,
@@ -270,8 +275,12 @@ export default {
           discount: "New",
           newPrice: 120,
           oldPrice: 160,
+                    quantity:1,
+
           stars: "★★★★★",
           reviews: 88,
+          quantity: 1,
+
           icon: " pi pi-cart-arrow-down",
         },
 
@@ -279,10 +288,14 @@ export default {
           id: 1002,
           name: "Jr. Zoom Soccer Cleats",
           image: img6,
-          discount:"New",
+          discount: "New",
           newPrice: 80,
           oldPrice: 100,
+                    quantity:1,
+
           stars: "★★★★☆",
+          quantity: 1,
+
           icon: " pi pi-cart-arrow-down",
           reviews: 45,
         },
@@ -290,8 +303,10 @@ export default {
           id: 1223,
           name: "GP11 Shooter USB Gamepad",
           image: img7,
-          discount:"New",
+          discount: "New",
           newPrice: 80,
+          quantity: 1,
+
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -303,6 +318,8 @@ export default {
           image: img8,
           discount: "New",
           newPrice: 80,
+          quantity: 1,
+
           oldPrice: 100,
           stars: "★★★★☆",
           icon: " pi pi-cart-arrow-down",
@@ -314,7 +331,7 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    Featured
+    Featured,
   },
   setup() {
     return {
@@ -375,8 +392,9 @@ a {
   text-decoration: none;
 }
 .product-card {
-  width: 320px;
+  max-width: 320px;
   /* border: 1px solid #e0e0e0; */
+  width: 100%;
   border-radius: 8px;
   overflow: hidden;
   background-color: #e0e0e0;
@@ -399,10 +417,11 @@ a {
 }
 
 .product-image {
-  width: 80%;
-  height: 230px;
+  width: 100%;
+  height: 100%;
+max-width: 250px;
   padding: 15px;
-  margin: 0 auto;
+  margin:  auto;
 }
 
 .action-icons {
@@ -440,7 +459,6 @@ a {
   align-items: center;
 }
 
- 
 .product-info {
   padding: 7px;
   background-color: #fff;
@@ -488,6 +506,5 @@ a {
   .Flash h1 {
     font-size: 20px;
   }
- 
 }
 </style>
