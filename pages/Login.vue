@@ -1,5 +1,5 @@
 <template>
-  <div class="Sign">
+    <div class="login">
     <div class="container">
       <div class="row">
         <div class="d-flex justify-center  align-items-center">
@@ -12,38 +12,25 @@
         <div class="col-lg-4 p-3">
           <div class="text-form">
             <div class="titla mb-4">
-              <h1>Create an account</h1>
+              <h1>Log in to Exclusive</h1>
               <p class=" fw-medium">Enter your details below</p>
             </div>
             <form action="" class="d-flex flex-column">
-              <div class="mb-3">
-                <input type="text" placeholder="Name" />
-              </div>
+              
               <div class="mb-3">
                 <input type="email" placeholder="Email or Phone Number" />
               </div>
               <div class="mb-3">
                 <input type="Password" placeholder="Password" />
               </div>
+              <div class="d-flex justify-content-between align-items-center">
+
               <div class="btn mt-3 mb-2">
-                <button class="w-100">Create Account</button>
+                <button > Log In</button>
               </div>
-              <div class="btn3 mt-3 mb-2 m-auto">
-                <button color="google">
-                  <img
-                    src="../assets/imgs/Icon-Google.png"
-                    alt=""
-                    class="px-2"
-                  />
-                  <span>Sign up with Google</span>
-                </button>
+              <span class=" text-danger cursor-pointer">Forget Password?</span>
               </div>
-              <div class="Already m-auto mt-2">
-                <span
-                  >Already have account?
-                  <nuxt-link to="/Login"><span>Log in</span></nuxt-link></span
-                >
-              </div>
+             
             </form>
           </div>
         </div>
@@ -54,20 +41,14 @@
 </template>
 
 <script>
-export default {
-  name: "Services",
-  data() {
-    return {};
-  },
-};
+    export default {
+        
+    }
 </script>
 
-<style scoped>
-.Sign {
-  padding: 20px 0;
-}
-a{
- color: black;
+<style  scoped>
+.login{
+    padding: 20px 0;
 }
 form div input {
   background-color: transparent;
@@ -85,6 +66,9 @@ form div input {
   width: 100%;
   height: 100%;
   max-width: 550px;
+}
+.cursor-pointer{
+    cursor: pointer;
 }
 @media (max-width:477px) {
   .col-lg-8 {

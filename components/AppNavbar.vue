@@ -56,18 +56,20 @@
                 <i class="pi pi-search"></i>
               </button>
             </div>
-            <div class="group d-flex align-items-center">
-               <div class="position-relative">
-
-               <span class="numbercart position-absolute">{{ cartCount }}</span>
-               </div>
-              <nuxt-link to="/cart">
+            <div class="group d-flex align-items-center" v-if="$route.path !== '/Signup' && $route.path !== '/Login'">
+              <div class="position-relative">
+                <span class="numbercart position-absolute">{{
+                  cartCount
+                }}</span>
+              </div>
+              <nuxt-link to="/cart" >
                 <img src="../assets/imgs/Cart1 with buy.png" alt="cart" />
-                
               </nuxt-link>
               <div class="position-relative">
-      <span class="number position-absolute">{{ favoriteCount }}</span>
-    </div>
+                <span class="number position-absolute">{{
+                  favoriteCount
+                }}</span>
+              </div>
               <nuxt-link to="/Favorite">
                 <img src="../assets/imgs/Wishlist.png" alt="love" />
               </nuxt-link>
@@ -85,7 +87,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -100,7 +102,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['favoriteCount','cartCount']),
+    ...mapGetters(["favoriteCount", "cartCount"]),
   },
   methods: {
     toggleMenu() {
@@ -149,7 +151,7 @@ export default {
 </script>
 <style scoped>
 .navbar {
-  background: transparent;
+  background: transparent ;
   backdrop-filter: blur(15px);
   transition: background-color 0.3s ease;
   border-bottom: 1px solid #ddd;
@@ -214,39 +216,38 @@ export default {
   font-size: 18px;
 }
 .number {
-    font-size: 15px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 9px;
-    top: -23px;
-    left: 14px;
-    font-weight: 500;
+  font-size: 15px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px;
+  top: -23px;
+  left: 14px;
+  font-weight: 500;
 }
-.numbercart{
-   font-size: 15px;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 9px;
-   bottom: 5px;
-    left: 16px;
-    font-weight: 500;
+.numbercart {
+  font-size: 15px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 9px;
+  bottom: 5px;
+  left: 16px;
+  font-weight: 500;
 }
-@media (max-width:477px) {
+@media (max-width: 477px) {
   .search-box {
-    
     display: none !important;
-}
+  }
 }
 </style>
