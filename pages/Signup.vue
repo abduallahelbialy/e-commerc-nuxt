@@ -4,49 +4,65 @@
       <div class="row">
         <div class="d-flex justify-center  align-items-center">
 
-        <div class="col-lg-8 p-3">
+        <div class="col-lg-8 p-3 m-auto">
           <div class="img-form">
             <img src="../assets/imgs/Side Image.png" alt="" class="imgFrom" />
           </div>
         </div>
-        <div class="col-lg-4 p-3">
-          <div class="text-form">
-            <div class="titla mb-4">
-              <h1>Create an account</h1>
-              <p class=" fw-medium">Enter your details below</p>
-            </div>
-            <form action="" class="d-flex flex-column">
-              <div class="mb-3">
-                <input type="text" placeholder="Name" />
+        <div class="col-lg-4 p-3 m-auto">
+            <div class="text-form">
+              <div class="titla mb-4">
+                <h1>Create an account</h1>
+                <p class="fw-medium">Enter your details below</p>
               </div>
-              <div class="mb-3">
-                <input type="email" placeholder="Email or Phone Number" />
-              </div>
-              <div class="mb-3">
-                <input type="Password" placeholder="Password" />
-              </div>
-              <div class="btn mt-3 mb-2">
-                <button class="w-100">Create Account</button>
-              </div>
-              <div class="btn3 mt-3 mb-2 m-auto">
-                <button color="google">
-                  <img
-                    src="../assets/imgs/Icon-Google.png"
-                    alt=""
-                    class="px-2"
+              <form @submit.prevent="handleSubmit" class="d-flex flex-column">
+                <div class="mb-3">
+                  <input
+                    type="text"
+                    v-model="name"
+                    placeholder="Name"
+                    :class="{'is-invalid': errors.name}"
                   />
-                  <span>Sign up with Google</span>
+                  <div v-if="errors.name" class="text-danger">{{ errors.name }}</div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="email"
+                    v-model="email"
+                    placeholder="Email or Phone Number"
+                    :class="{'is-invalid': errors.email}"
+                  />
+                  <div v-if="errors.email" class="text-danger">{{ errors.email }}</div>
+                </div>
+                <div class="mb-3">
+                  <input
+                    type="password"
+                    v-model="password"
+                    placeholder="Password"
+                    :class="{'is-invalid': errors.password}"
+                  />
+                  <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
+                </div>
+                <div class="btn mt-3 mb-2">
+                  <button class="w-100" type="submit" >Create Account</button>
+                </div>
+              </form>
+              <div class="d-flex justify-center flex-column align-items-center">
+
+              <div class="btn3 mt-3 mb-2">
+                <button color="google">
+                  <img src="../assets/imgs/Icon-Google.png" alt="" class="px-2" />
+                 Sign up with Google
                 </button>
               </div>
               <div class="Already m-auto mt-2">
-                <span
-                  >Already have account?
-                  <nuxt-link to="/Login"><span>Log in</span></nuxt-link></span
-                >
+                <span>Already have account? 
+                  <nuxt-link to="/Login"><span>Log in</span></nuxt-link>
+                </span>
               </div>
-            </form>
+              </div>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
@@ -55,13 +71,53 @@
 
 <script>
 export default {
-  name: "Services",
   data() {
-    return {};
+    return {
+      name: '',
+      email: '',
+      password: '',
+      errors: {}
+    };
   },
+  methods: {
+    handleSubmit() {
+      this.errors = this.validateForm();
+      if (Object.keys(this.errors).length === 0) {
+        // إذا لم تكن هناك أخطاء، قم بالتوجه إلى الصفحة الرئيسية
+        this.$router.push('/');
+      }
+    },
+    validateForm() {
+      const errors = {};
+
+      // التحقق من الحقل Name
+      if (!this.name) {
+        errors.name = 'Name is required';
+      }
+
+      // التحقق من الحقل Email
+      if (!this.email) {
+        errors.email = 'Email is required';
+      } else if (!this.validEmail(this.email)) {
+        errors.email = 'Please enter a valid email address';
+      }
+
+      // التحقق من الحقل Password
+      if (!this.password) {
+        errors.password = 'Password is required';
+      } else if (this.password.length < 6) {
+        errors.password = 'Password must be at least 6 characters long';
+      }
+
+      return errors;
+    },
+    validEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@(([^<>()[\]\.,;:\s@"]+\.[^<>()[\]\.,;:\s@"]{2,}))$/i;
+      return re.test(email);
+    }
+  }
 };
 </script>
-
 <style scoped>
 .Sign {
   padding: 20px 0;
@@ -80,6 +136,13 @@ form div input {
 .titla h1{
   font-size: 30px;
   line-height: 2;
+}
+.is-invalid {
+  border-color: red;
+}
+.text-danger {
+  color: red;
+  font-size: 0.875rem;
 }
 .imgFrom {
   width: 100%;
