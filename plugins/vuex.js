@@ -2,10 +2,32 @@ import { createStore } from "vuex";
 
 const store = createStore({
   state: {
+    ///favoriteProducts///
     favoriteProducts: [],
+    //cartProducts//
     cartProducts: [],
+    //vaildtion form///
+    user: {
+      name: "",
+      email: "",
+      password: "",
+      user: null,
+      isLoggedIn: false,
+    },
   },
   mutations: {
+    //vaildtion form///
+
+    setUser(state, user) {
+      state.user = user;
+      state.isLoggedIn = true;
+    },
+    logout(state) {
+      state.user = null;
+      state.isLoggedIn = false;
+    },
+    ///
+    //favoriteProducts///
     ADD_TO_FAVORITES(state, product) {
       state.favoriteProducts.push(product);
     },
@@ -14,6 +36,8 @@ const store = createStore({
         (product) => product.id !== productId
       );
     },
+    //cartProducts//
+
     ADD_TO_CART(state, product) {
       state.cartProducts.push(product);
     },
@@ -24,8 +48,13 @@ const store = createStore({
     },
   },
   getters: {
+    //form///
+    isLoggedIn: (state) => state.isLoggedIn,
+    getUser: (state) => state.user,
+    ///favoriteProducts///
     favoriteProducts: (state) => state.favoriteProducts,
     favoriteCount: (state) => state.favoriteProducts.length,
+    //cartProducts//
     cartProducts: (state) => state.cartProducts,
     cartCount: (state) => state.cartProducts.length,
     isFavorite: (state) => (productId) =>
@@ -34,6 +63,9 @@ const store = createStore({
       state.cartProducts.some((product) => product.id === productId),
   },
   actions: {
+    registerUser({ commit }, user) {
+      commit("setUser", user);
+    },
     REMOVE_FROM_FAVORITES({ commit }, productId) {
       return new Promise((resolve, reject) => {
         try {

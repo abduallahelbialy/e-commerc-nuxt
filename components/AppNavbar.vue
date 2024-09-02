@@ -56,13 +56,16 @@
                 <i class="pi pi-search"></i>
               </button>
             </div>
-            <div class="group d-flex align-items-center" v-if="$route.path !== '/Signup' && $route.path !== '/Login'">
+            <div
+              class="group d-flex align-items-center"
+              v-if="$route.path !== '/Signup' && $route.path !== '/Login'"
+            >
               <div class="position-relative">
                 <span class="numbercart position-absolute">{{
                   cartCount
                 }}</span>
               </div>
-              <nuxt-link to="/cart" >
+              <nuxt-link to="/cart">
                 <img src="../assets/imgs/Cart1 with buy.png" alt="cart" />
               </nuxt-link>
               <div class="position-relative">
@@ -73,9 +76,11 @@
               <nuxt-link to="/Favorite">
                 <img src="../assets/imgs/Wishlist.png" alt="love" />
               </nuxt-link>
-              <nuxt-link to="/profile">
-                <i class="pi pi-user" style="font-size: 20px"></i>
-              </nuxt-link>
+              <div v-if="$store.getters.isLoggedIn">
+                <nuxt-link to="/profile">
+                  <i class="pi pi-user" style="font-size: 20px"></i>
+                </nuxt-link>
+              </div>
             </div>
           </div>
         </div>
@@ -102,9 +107,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["favoriteCount", "cartCount"]),
+    ...mapGetters(["favoriteCount", "cartCount", "isLoggedIn"]),
   },
   methods: {
+    logout() {
+      this.$store.commit("logout");
+      this.$router.push("/login");
+    },
     toggleMenu() {
       const navbarContent = this.$refs.navbarContent;
       if (navbarContent.classList.contains("show")) {
@@ -151,13 +160,16 @@ export default {
 </script>
 <style scoped>
 .navbar {
-  background: transparent ;
+  background: transparent;
   backdrop-filter: blur(15px);
   transition: background-color 0.3s ease;
   border-bottom: 1px solid #ddd;
 }
 .navbar.scrolled {
   background-color: rgba(37, 0, 108, 0.8) !important;
+}
+a i{
+  color: black;
 }
 .navbar-nav a {
   color: #000;

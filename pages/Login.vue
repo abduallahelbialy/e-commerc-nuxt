@@ -33,6 +33,8 @@
                   />
                   <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
                 </div>
+                <div v-if="errors.general" class="text-danger">{{ errors.general }}</div>
+
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn mt-3 mb-2">
                     <button type="submit">Log In</button>
@@ -49,6 +51,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -57,39 +61,40 @@ export default {
       errors: {}
     };
   },
+  computed: {
+    ...mapGetters(['getUser'])
+  },
   methods: {
-    handleSubmit() {
-      this.errors = this.validateForm();
-      if (Object.keys(this.errors).length === 0) {
-        // هنا يمكنك تنفيذ عملية تسجيل الدخول أو التوجيه إلى صفحة أخرى
+  handleSubmit() {
+    this.errors = this.validateForm();
+    if (Object.keys(this.errors).length === 0) {
+      if (this.email !== this.getUser.email) {
+        this.errors.general = 'No user found with this email address';
+      } else if (this.password !== this.getUser.password) {
+        this.errors.general = 'Invalid email or password';
+      } else {
+        // تحديث حالة تسجيل الدخول في Vuex
+        this.$store.commit('setUser', { email: this.email });
         alert('Logged in successfully!');
         this.$router.push('/');
       }
-    },
-    validateForm() {
-      const errors = {};
-
-      // التحقق من الحقل Email
-      if (!this.email) {
-        errors.email = 'Email or Phone Number is required';
-      } else if (!this.validEmail(this.email)) {
-        errors.email = 'Please enter a valid email address';
-      }
-
-      // التحقق من الحقل Password
-      if (!this.password) {
-        errors.password = 'Password is required';
-      } else if (this.password.length < 6) {
-        errors.password = 'Password must be at least 6 characters long';
-      }
-
-      return errors;
-    },
-    validEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
     }
+  },
+  validateForm() {
+    const errors = {};
+
+    if (!this.email) {
+      errors.email = 'Email or Phone Number is required';
+    }
+
+    if (!this.password) {
+      errors.password = 'Password is required';
+    }
+
+    return errors;
   }
+}
+
 };
 </script>
 

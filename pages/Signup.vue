@@ -70,6 +70,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
   data() {
     return {
@@ -79,30 +81,35 @@ export default {
       errors: {}
     };
   },
-  methods: {
+ methods: {
+    ...mapActions(['registerUser']),
     handleSubmit() {
       this.errors = this.validateForm();
       if (Object.keys(this.errors).length === 0) {
-        // إذا لم تكن هناك أخطاء، قم بالتوجه إلى الصفحة الرئيسية
-        this.$router.push('/');
+        // إذا لم تكن هناك أخطاء، قم بحفظ البيانات في Vuex
+        this.registerUser({
+          name: this.name,
+          email: this.email,
+          password: this.password
+        });
+
+        // التوجه إلى صفحة تسجيل الدخول
+        this.$router.push('/login');
       }
     },
     validateForm() {
       const errors = {};
 
-      // التحقق من الحقل Name
       if (!this.name) {
         errors.name = 'Name is required';
       }
 
-      // التحقق من الحقل Email
       if (!this.email) {
         errors.email = 'Email is required';
       } else if (!this.validEmail(this.email)) {
         errors.email = 'Please enter a valid email address';
       }
 
-      // التحقق من الحقل Password
       if (!this.password) {
         errors.password = 'Password is required';
       } else if (this.password.length < 6) {

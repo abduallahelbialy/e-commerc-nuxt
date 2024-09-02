@@ -64,7 +64,7 @@ export default {
   components:{OurProducts},
   methods: {
     updateCountdown() {
-      const targetDate = new Date("2024-09-01T23:59:59").getTime();
+      const targetDate = new Date("2024-09-07T23:59:59").getTime();
       const currentTime = new Date().getTime();
       const timeDifference = targetDate - currentTime;
 
